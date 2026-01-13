@@ -36,6 +36,7 @@ pub fn process_instruction(
     }
 
     // Fund the data account to let it rent exemption.
+    // 租金补足，从用户账户中转
     if rent_exemption > account_data.lamports() {
         solana_program::program::invoke(
             &solana_program::system_instruction::transfer(
@@ -48,6 +49,7 @@ pub fn process_instruction(
     }
     // Withdraw excess funds and return them to users. Since the funds in the pda account belong to the program, we do
     // not need to use instructions to transfer them here.
+    // 租赁退款，退回用户
     if rent_exemption < account_data.lamports() {
         **account_user.lamports.borrow_mut() = account_user.lamports() + account_data.lamports() - rent_exemption;
         **account_data.lamports.borrow_mut() = rent_exemption;

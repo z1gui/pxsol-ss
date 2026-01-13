@@ -35,5 +35,5 @@ def load(user: pxsol.wallet.Wallet) -> bytearray:
 if __name__ == '__main__':
     save(ada, b'The quick brown fox jumps over the lazy dog')
     print(load(ada).decode()) # The quick brown fox jumps over the lazy dog
-    save(ada, '片云天共远, 永夜月同孤.'.encode())
-    print(load(ada).decode()) # 片云天共远, 永夜月同孤.
+    save(ada, 'hello world.'.encode())
+    print(load(ada).decode()) 
